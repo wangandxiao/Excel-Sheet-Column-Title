@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string convertToTitle(int n) {
+        string s = "";
+        stack<int> sta;
+        int extra;
+        int digits = n;
+        int jiewei = 0;
+        char letter;
+        while(digits > 0){
+            extra = digits%26;
+            if (extra == 0) {
+                extra = 26;
+                jiewei = 1;
+            }
+            sta.push(extra);
+            digits = digits / 26 - jiewei;
+            jiewei = 0;
+        }
+        while(!sta.empty()){
+            letter = 64 + sta.top();
+            sta.pop();
+            s = s + letter;
+        }
+        return s;
+    }
+};
